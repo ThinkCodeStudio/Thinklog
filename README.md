@@ -50,7 +50,7 @@
 |THINKLOG| 类型，通常在返回类型定义中使用|
 |THINKLOG_PRINT(log, ...)| 普通信息打印|
 |THINKLOG_LOG(function)| 接收函数返回，打印返回值的内容|
-|THINKLOG_LOG_CODE(function)| 接收函数返回，打印返回值的内容，适配返回int值的函数|
+|THINKLOG_LOG_CODE(name,arg)| 接收函数返回，打印返回值的内容，适配返回int值的函数|
 |THINKLOG_SUCCESS(function)| 返回的消息成功才打印|
 |THINKLOG_SUCCESS_EXIT(function)| 返回的结果码成功才打印，并且跳转到THINKLOG_EXIT|
 |THINKLOG_ERROR(function)| 返回的结果码失败才打印|

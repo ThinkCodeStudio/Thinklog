@@ -8,6 +8,17 @@ extern "C"
 
 // #define RELEASE
 
+
+//显示方式:0（默认值）、1（高亮）、22（非粗体）、4（下划线）、24（非下划线）、5（闪烁）、25（非闪烁）、7（反显）、27（非反显）
+//前景色:30（黑色）、31（红色）、32（绿色）、 33（黄色）、34（蓝色）、35（洋红）、36（青色）、37（白色）
+//背景色:40（黑色）、41（红色）、42（绿色）、 43（黄色）、44（蓝色）、45（洋红）、46（青色）、47（白色）
+
+//\033[0m 默认
+//\033[1;32;40m 绿色
+//033[1;31;40m 红色
+//printf( "\033[1;31;40m 输出红色字符 \033[0m" );
+
+
 typedef enum
 {
     THINKLOG_CODE_FAIL = -100,
@@ -19,7 +30,7 @@ typedef enum
 #define THINKLOG int
 #define THINKLOG_PRINT(log, ...)
 #define THINKLOG_LOG(function) rc = function
-#define THINKLOG_LOG_CODE(function) function
+#define THINKLOG_LOG_CODE(name,arg) name arg
 #define THINKLOG_SUCCESS(function) rc = function
 #define THINKLOG_SUCCESS_EXIT(function) rc = function
 #define THINKLOG_ERROR(function) rc = function
@@ -90,8 +101,8 @@ typedef struct
     results = function;         \
     PRINTF(FLAG ">L:[%s]#%d<-[%s]#%d:%s. code=%d\r\n", __FUNCTION__, __LINE__, results.name, results.line, results.message, results.code)
 //适配返回int值的函数
-#define THINKLOG_LOG_CODE(function) \
-    PRINTF(FLAG ">L:[%s]#%d:code=%d\r\n", __FUNCTION__, __LINE__, function)
+#define THINKLOG_LOG_CODE(name,arg) \
+    PRINTF(FLAG ">L:[%s]#%d:code=%d\r\n", __FUNCTION__, __LINE__, #name, name arg)
 //解析返回数据并打印,返回成功才打印
 #define THINKLOG_SUCCESS(function)        \
     results = function;                    \
