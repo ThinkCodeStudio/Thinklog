@@ -117,10 +117,10 @@ typedef struct
 //解析返回数据并打印,正常输出
 #define NDLOG_LOG(function) \
     results = function;     \
-    PRINTF(PRINT_FORMAT("L", "<-[%s]#%-4d:%s. code=%X", results.name, results.line, results.message, results.code))
+    PRINTF(PRINT_FORMAT("L", "<-[%s]#%-4d:%s. code=0x%X", results.name, results.line, results.message, results.code))
 //适配返回int值的函数
 #define NDLOG_LOG_CODE(function) \
-    PRINTF(PRINT_FORMAT("L", "<-[%s]:code=%X", #function, function))
+    PRINTF(PRINT_FORMAT("L", "<-[%s]:code=0x%X", #function, function))
 //检查函数是否失败
 #define NDLOG_CHECK_RC(function)             \
     rcode = function;                        \
@@ -134,26 +134,26 @@ typedef struct
 #define NDLOG_SUCCESS(function)        \
     results = function;                \
     if (results.code >= NDLOG_SUCCESS) \
-    PRINTF(PRINT_FORMAT("S", "<-[%s]#%-4d:%s. code=%X", results.name, results.line, results.message, results.code))
+    PRINTF(PRINT_FORMAT("S", "<-[%s]#%-4d:%s. code=0x%X", results.name, results.line, results.message, results.code))
 //解析返回数据并打印,返回成功才打印，并跳转到退出代码
 #define NDLOG_SUCCESS_EXIT(function)                                                                                     \
     results = function;                                                                                                  \
     if (results.code >= NDLOG_SUCCESS)                                                                                   \
     {                                                                                                                    \
-        PRINTF(PRINT_FORMAT("S", "<-[%s]#%-4d:%s. code=%X", results.name, results.line, results.message, results.code)); \
+        PRINTF(PRINT_FORMAT("S", "<-[%s]#%-4d:%s. code=0x%X", results.name, results.line, results.message, results.code)); \
         goto exit;                                                                                                       \
     }
 //解析返回数据并打印,返回失败才打印
 #define NDLOG_ERROR(function)         \
     results = function;               \
     if (results.code < NDLOG_SUCCESS) \
-    PRINTF(PRINT_FORMAT("E", "<-[%s]#%-4d:%s. code=%X. in:%s", results.name, results.line, results.message, results.code, results.file))
+    PRINTF(PRINT_FORMAT("E", "<-[%s]#%-4d:%s. code=0x%X. in:%s", results.name, results.line, results.message, results.code, results.file))
 //解析返回数据并打印,返回失败才打印,并跳转到退出代码
 #define NDLOG_ERROR_EXIT(function)                                                                                                            \
     results = function;                                                                                                                       \
     if (results.code < NDLOG_SUCCESS)                                                                                                         \
     {                                                                                                                                         \
-        PRINTF(PRINT_FORMAT("E", "<-[%s]#%-4d:%s. code=%X. in:%s", results.name, results.line, results.message, results.code, results.file)); \
+        PRINTF(PRINT_FORMAT("E", "<-[%s]#%-4d:%s. code=0x%X. in:%s", results.name, results.line, results.message, results.code, results.file)); \
         goto exit;                                                                                                                            \
     }
 //跳转退出
